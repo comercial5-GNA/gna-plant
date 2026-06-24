@@ -145,6 +145,20 @@ function App() {
     setCanvasVersion((current) => current + 1)
   }
 
+  const equipmentImages = {
+  jaw: mandibulaImg,
+  coneGA: coneGAImg,
+  coneH: coneHImg,
+  screen: peneiraImg,
+  feeder: alimentadorImg,
+  chute: calhaImg,
+  scalper: escalperImg,
+  rollCrusher: britadorRolosImg,
+  surgePile: pilhaPulmaoImg,
+  productPile: pilhaProdutoImg,
+  feedPile: pilhaAlimentacaoImg,
+}
+  
   function loadProjectFromFile(file, shouldOpenEditor = false) {
     if (!file) return
 
@@ -164,8 +178,11 @@ function App() {
             ...node,
             id: newNodeId,
             data: {
-              ...node.data,
-              descriptionWidth: node.data.descriptionWidth || 120,
+  ...node.data,
+  image:
+    equipmentImages[node.data.equipmentType] ||
+    node.data.image,
+  descriptionWidth: node.data.descriptionWidth || 120,
               inputFlow: node.data.inputFlow || '',
               bottomOutputFlow: node.data.bottomOutputFlow || '',
               lateralOutputFlow: node.data.lateralOutputFlow || '',
